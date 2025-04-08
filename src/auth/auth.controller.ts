@@ -1,6 +1,9 @@
 import { Controller, Post, Body, Get, UseGuards, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from '@nestjs/passport';
+import { ForgotPasswordDto } from './dto/forgot-password.dto';
+import { VerifyCodeDto } from './dto/verify-code.dto';
+import { ResetPasswordDto } from './dto/reset-password.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -28,5 +31,19 @@ export class AuthController {
             message: 'Google login successful',
             user: req.user,
         };
+    }
+    @Post('forgot-password')
+    forgot(@Body() dto: ForgotPasswordDto) {
+      return this.authService.forgotPassword(dto);
+    }
+    
+    @Post('verify-code')
+    verify(@Body() dto: VerifyCodeDto) {
+      return this.authService.verifyCode(dto);
+    }
+    
+    @Post('reset-password')
+    reset(@Body() dto: ResetPasswordDto) {
+      return this.authService.resetPassword(dto);
     }
 }

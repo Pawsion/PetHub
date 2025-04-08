@@ -9,18 +9,18 @@ export class Payment {
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
-  user: User;  // Korisnik koji izvršava uplatu
+  user: User; 
 
   @OneToOne(() => Reservation)
-  @JoinColumn() // ovo označava da je "payment" u tabeli koja sadrži spoljni ključ
+  @JoinColumn()
   reservation: Reservation;a
 
   @Column('decimal', { precision: 10, scale: 2 })
-  amount: number;  // Iznos uplate
+  amount: number;
 
   @Column({ type: 'enum', enum: ['pending', 'completed', 'failed'], default: 'pending' })
-  status: string;  // Status uplate (pending, completed, failed)
+  status: string;
 
   @CreateDateColumn()
-  payment_date: Date;  // Datum kada je uplata izvršena
+  payment_date: Date; 
 }
