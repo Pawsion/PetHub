@@ -12,13 +12,11 @@ export class PaymentService {
     private readonly paymentRepository: Repository<Payment>,
   ) {}
 
-  // CREATE
   async create(createPaymentDto: CreatePaymentDto): Promise<Payment> {
     const payment = this.paymentRepository.create(createPaymentDto);
     return this.paymentRepository.save(payment);
   }
 
-  // READ
   async findAll(): Promise<Payment[]> {
     return this.paymentRepository.find();
   }
@@ -33,13 +31,11 @@ export class PaymentService {
     return payment;
 }
 
-  // UPDATE
   async update(id: number, updatePaymentDto: UpdatePaymentDto): Promise<Payment> {
     await this.paymentRepository.update(id, updatePaymentDto);
     return this.findOne(id);
   }
 
-  // DELETE
   async remove(id: number): Promise<void> {
     await this.paymentRepository.delete(id);
   }
