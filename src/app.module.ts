@@ -15,6 +15,7 @@ import { Payment } from './payments/payment.entity';
 import { Review } from './reviews/review.entity';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -22,11 +23,11 @@ import { ConfigModule } from '@nestjs/config';
       type: 'mysql',
       host: 'localhost',
       port: 3306,
-      username: 'root',  // tvoj username
-      password: 'root',  // tvoja šifra
-      database: 'pethoteldb',  // ime tvoje baze
+      username: 'root',  
+      password: 'root',  
+      database: 'pethoteldb',  
       entities: [User, Kennel, Pet, Reservation, Payment, Review],
-      synchronize: true,  // Samo za razvoj, nemoj koristiti u produkciji
+      synchronize: true, 
     }),
     ConfigModule.forRoot(),
     UsersModule,
@@ -37,6 +38,8 @@ import { ConfigModule } from '@nestjs/config';
     KennelsModule,
     PetsModule,
     AuthModule,
+    MailModule
   ],
+  providers: [],
 })
 export class AppModule {}

@@ -32,7 +32,7 @@ export class PetService {
   }
 
   async updatePet(id: number, dto: UpdatePetDto): Promise<Pet> {
-    await this.getPetById(id); // Proveri da li postoji
+    await this.getPetById(id);
 
     await this.petRepository.update(id, dto);
     return this.getPetById(id);
